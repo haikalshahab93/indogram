@@ -1,0 +1,40 @@
+/* Scale icons in filter to em relative to text */
+.feed-filter .icon svg{ width: 1.1em; height: 1.1em; }
+/* Audit spacing to align with global type scale */
+.feed{ display: grid; gap: 16px; }
+.feed-filter{ display: flex; justify-content: center; gap: 8px; }
+.posts{ display: grid; grid-template-columns: 1fr; gap: 24px; max-width: 680px; margin: 0 auto; }
+/* Caption and empty-follow already use var font sizes */
+.post{border:1px solid var(--border);border-radius:8px;overflow:hidden;background:#fff}
+.post img{width:100%;height:220px;object-fit:cover;display:block}
+.post .caption{padding:8px 10px;color:#333}
+
+.composer{display:grid;gap:16px}
+.compose-form{display:grid;gap:12px}
+.compose-form .file{display:inline-flex;align-items:center;gap:8px;border:1px dashed var(--border);padding:8px 12px;border-radius:8px;color:#555}
+.compose-form input[type="file"]{display:none}
+.compose-form .preview{border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.compose-form .preview img{width:100%;max-height:320px;object-fit:cover;display:block}
+.compose-form textarea{min-height:88px;padding:8px 10px;border-radius:8px;border:1px solid var(--border);resize:vertical}
+.compose-form .primary{background:#111;color:#fff;border:none;border-radius:8px;padding:10px 14px;font-weight:600;cursor:pointer}
+
+.profile{display:grid;gap:16px}
+.mutual-required{padding:10px 12px;border:1px dashed var(--border);background:#fafafa;border-radius:8px;color:#444}
+.empty-follow{padding:12px;border:1px dashed var(--border);background:#f5fff5;border-radius:12px;color:#256d1b;text-align:center; font-size: var(--font-sm); line-height: var(--lh-normal); }
+
+@media (min-width: 640px){
+  .posts{ grid-template-columns: minmax(0, 600px); }
+}
+@media (min-width: 768px){
+  .posts{ grid-template-columns: minmax(0, 700px); }
+}
+@media (min-width: 1024px){
+  .posts{ grid-template-columns: minmax(0, 860px); }
+}
+
+@media (max-width: 640px){
+  .posts{ grid-template-columns: 1fr; max-width: none; margin: 0; }
+}
+@media (max-width: 640px){
+  .post img{ height: auto; }
+}
