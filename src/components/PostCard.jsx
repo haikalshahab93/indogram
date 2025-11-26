@@ -227,6 +227,9 @@ export default function PostCard({ post }){
             </span>
             <span className="label">Kirim</span>
           </button>
+          <button type="button" className="close" onClick={()=> setShowComment(false)}>
+            <span className="label">Batal</span>
+          </button>
         </div>
       </form>
     </article>

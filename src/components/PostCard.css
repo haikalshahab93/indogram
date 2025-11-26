@@ -222,7 +222,7 @@
 .comment-form textarea{
   flex: 1;
   min-width: 0;
-  border: 1px solid var(--border);
+  border: 1.5px solid var(--border);
   border-radius: 8px;
   padding: 8px 10px;
   font-size: var(--font-sm);
@@ -245,7 +245,7 @@
 .comment-actions .close:hover{ background: #f7f7f7; }
 
 @media (max-width: 640px){
-  .post-image{ height: auto; max-height: 80vh; object-fit: contain; }
+  .post-image{ height: auto; max-height: 60vh; object-fit: contain; }
   .nav{ width: 40px; height: 40px; }
   .caption{ font-size: var(--font-sm); padding: 10px 12px; }
   .actions{ padding: 10px 12px; gap: 8px; row-gap: 6px; flex-wrap: wrap; }
@@ -271,6 +271,7 @@
 
 @media (min-width: 1025px){
   .post-image{ aspect-ratio: 4 / 5; max-height: 70vh; }
+  .comment-form textarea{ max-height: 220px; }
 }
 /* Meta (author & time) */
 .post-header .meta .author{ font-size: var(--font-md); line-height: var(--lh-tight); }
