@@ -1,0 +1,26 @@
+.user-profile{display:grid;gap:16px}
+.profile-header{display:flex;gap:16px;align-items:center}
+.avatar.large{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#ff5858,#ffc02e)}
+.info{display:flex;flex-direction:column;gap:8px}
+.top{display:flex;gap:8px;align-items:center}
+.follow{border:1px solid var(--border);border-radius:999px;padding:6px 10px;cursor:pointer;background:#fff}
+.follow.following{background:#111;border-color:#111;color:#fff}
+.stats{color:#555}
+.posts{display:grid;grid-template-columns:1fr;gap:24px;max-width:680px;margin:0 auto}
+.mutual-required{padding:10px 12px;border:1px dashed var(--border);background:#fafafa;border-radius:8px;color:#444}
+@media (max-width: 600px){
+  .profile-header{flex-direction:column;align-items:flex-start}
+  .top{flex-wrap:wrap}
+  .posts{grid-template-columns:1fr;gap:12px;max-width:none;margin:0}
+}
+/* Audit spacing: align gaps and type scale */
+.profile-header{ display: flex; gap: 16px; align-items: center; }
+.info{ display: flex; flex-direction: column; gap: 6px; }
+.top{ display: flex; gap: 8px; align-items: center; }
+.stats{ display: flex; gap: 10px; flex-wrap: wrap; }
+/* Type scale already applied for h2/stats/follow */
+.info h2{ font-size: var(--font-xl); line-height: var(--lh-tight); }
+.stats{ font-size: var(--font-xs); line-height: var(--lh-normal); }
+.follow{ font-size: var(--font-sm); line-height: var(--lh-tight); }
+/* Icons (if any) scale relative to text */
+.profile-header .icon svg, .stats .icon svg{ width: 1.1em; height: 1.1em; }

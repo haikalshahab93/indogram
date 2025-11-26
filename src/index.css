@@ -1,0 +1,111 @@
+/* Reset & global styles */
+:root{--bg:#fafafa;--text:#111;--muted:#666;--border:#e6e6e6;--primary:#16a34a}
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+
+.app-container{min-height:100%;display:flex}
+/* Sidebar left (desktop) */
+.nav{position:fixed;top:0;left:0;height:100vh;width:240px;border-right:1px solid var(--border);border-bottom:none}
+.nav-inner{flex-direction:column;align-items:flex-start;gap:8px;padding:16px}
+.nav-links{display:flex;flex-direction:column;width:100%}
+.nav-item{width:100%}
+.nav-footer{margin-top:auto;width:100%}
+.auth-links{width:100%;display:flex;gap:8px}
+
+/* Main shifts to the right */
+.app-main{margin-left:240px;width:calc(100% - 240px);max-width:935px;padding:24px;margin-right:auto}
+
+/* Adjust when sidebar collapses */
+@media (max-width:900px){
+  .app-main{margin-left:72px;width:calc(100% - 72px);padding:16px}
+}
+
+/* Mobile bottom bar adjustments */
+@media (max-width:768px){
+  .app-container{padding-bottom:calc(56px + env(safe-area-inset-bottom))} /* beri ruang untuk bottom bar + safe-area iOS */
+  .app-container.guest .nav{display:none}
+  .app-container.guest .app-main{margin-left:0;width:100%;max-width:100%}
+-  .app-main{margin-left:0;width:100%;max-width:100%;padding:12px; padding-bottom: calc(72px + env(safe-area-inset-bottom));}
++  /* Tambahkan ruang ekstra di bawah untuk menghindari tumpang tindih dengan form komentar fixed */
++  .app-main{margin-left:0;width:100%;max-width:100%;padding:12px; margin-bottom: calc(120px + env(safe-area-inset-bottom)); padding-bottom: calc(72px + 120px + env(safe-area-inset-bottom));}
+}
+
+section h2{margin:0 0 12px;font-size: var(--font-lg);}
+section p{color:var(--muted)}
+
+/* Auth pages */
+.auth{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;overflow:hidden;
+  /* layered gradients for playful background */
+  background:
+    radial-gradient(900px 900px at 8% 8%, rgba(96,165,250,0.25) 0%, rgba(96,165,250,0) 60%),
+    radial-gradient(700px 700px at 92% 18%, rgba(244,114,182,0.25) 0%, rgba(244,114,182,0) 60%),
+    radial-gradient(600px 600px at 20% 88%, rgba(134,239,172,0.25) 0%, rgba(134,239,172,0) 60%),
+    linear-gradient(180deg, #f9fafb 0%, #f3f4f6 100%);
+}
+.auth::before{content:"";position:absolute;top:-140px;left:-140px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle, rgba(22,163,74,0.20) 0%, rgba(22,163,74,0) 60%);filter:blur(48px)}
+.auth::after{content:"";position:absolute;bottom:-160px;right:-160px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle, rgba(59,130,246,0.20) 0%, rgba(59,130,246,0) 60%);filter:blur(52px)}
+.auth-card{width:350px;max-width:90vw;background:rgba(255,255,255,0.92);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:12px;display:flex;flex-direction:column;align-items:stretch;gap:12px;box-shadow:0 12px 30px rgba(0,0,0,0.06)}
+.auth-card.small{padding:16px;text-align:center; font-size: var(--font-xs); line-height: var(--lh-normal); }
+.auth-brand{font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size: var(--font-xl); text-align:center;margin:4px 0 12px;color:#111}
+.auth-form{display:flex;flex-direction:column;gap:8px}
+.auth-input{border:1px solid var(--border);border-radius:10px;padding:10px 12px;font-size: var(--font-sm); line-height: var(--lh-normal); background:#fff}
+.auth-submit{background:#0095f6;color:#fff;border:none;border-radius:10px;padding:10px 12px;font-weight:600;cursor:pointer;box-shadow:0 6px 14px rgba(0,149,246,0.25); font-size: var(--font-sm); line-height: var(--lh-tight); }
+.auth-submit:disabled{opacity:.6;cursor:not-allowed}
+.auth-divider{display:flex;align-items:center;gap:12px;color:#666;font-size: var(--font-xs); line-height: var(--lh-normal); justify-content:center}
+.auth-facebook{background:#1877f2;color:#fff;border:none;border-radius:10px;padding:10px 12px;font-weight:600;cursor:pointer; font-size: var(--font-sm); line-height: var(--lh-tight); }
+.auth-links-inline{text-align:center; font-size: var(--font-xs); line-height: var(--lh-normal); }
+.auth-logged{padding-top:64px}
+
+@media (min-width:900px){
+  .auth{padding:48px}
+  .auth-card{width:380px}
+}
+
+@media (max-width: 640px){
+  .auth{ padding:20px; }
+  .auth-card{ width:100%; max-width:480px; margin-bottom:16px; border-radius:14px; padding:18px; }
+  .auth-brand{ font-size:28px; margin:2px 0 10px; }
+  .auth-form{ gap:10px; }
+  .auth-input{ padding:12px 14px; font-size: var(--font-sm); }
+  .auth-submit, .auth-facebook{ padding:12px 14px; font-size: var(--font-sm); width:100%; }
+  .auth-divider{ font-size: var(--font-xs); gap:10px; }
+  .auth::before{ top:-120px; left:-120px; width:380px; height:380px; filter:blur(36px); }
+  .auth::after{ bottom:-140px; right:-140px; width:420px; height:420px; filter:blur(38px); }
+}
+
+@media (max-width: 400px){
+  .auth{ padding:16px; }
+  .auth-card{ padding:16px; border-radius:12px; }
+  .auth-brand{ font-size:24px; }
+  .auth-input{ font-size:15px; }
+  .auth-submit, .auth-facebook{ font-size:14px; }
+  .auth-links-inline{ font-size:14px; }
+  .auth::before, .auth::after{ opacity:0.7; }
+}
+@media (max-width: 640px){
+  html{ font-size: 15px; } /* kecilkan sedikit di mobile */
+}
+@media (max-width: 400px){
+  html{ font-size: 14px; } /* lebih kecil untuk layar sangat kecil */
+}
+
+:root{
+  /* tighten min values slightly for ultra-small devices */
+  --font-xs: clamp(12px, 1.4vw, 13px);
+  --font-sm: clamp(13px, 1.6vw, 14px);
+  --font-md: clamp(14px, 1.8vw, 16px);
+  --font-lg: clamp(16px, 2vw, 18px);
+  --font-xl: clamp(20px, 2.4vw, 24px);
+  --lh-tight: 1.3;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.7;
+}
+/* Minimum html font-size safety clamp for ultra-small devices */
+@media (max-width: 360px){
+  html{ font-size: 14px; }
+}
+@media (max-width: 320px){
+  html{ font-size: 13px; }
+}
+.auth .error{ color:#ef4444; font-size: var(--font-xs); line-height: var(--lh-normal); margin:6px 0; }

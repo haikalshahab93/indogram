@@ -1,0 +1,9 @@
+.composer{display:grid;gap:12px}
+.compose-form{display:grid;gap:12px}
+.compose-form .file{display:inline-flex;align-items:center;gap:8px}
+.compose-form .file input[type="file"]{display:none}
+.compose-form .file span{display:inline-block;border:1px dashed var(--border);border-radius:8px;padding:8px 10px;cursor:pointer; font-size: var(--font-sm); line-height: var(--lh-tight); }
+.preview-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+.preview-grid img{width:100%;height:120px;object-fit:cover;border-radius:8px;border:1px solid var(--border)}
+textarea{border:1px solid var(--border);border-radius:8px;padding:8px;min-height:100px; font-size: var(--font-sm); line-height: var(--lh-normal); }
+button.primary{background:#111;color:#fff;border:none;border-radius:8px;padding:10px;font-weight:700;cursor:pointer; font-size: var(--font-sm); line-height: var(--lh-tight); }
