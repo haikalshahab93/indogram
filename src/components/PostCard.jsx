@@ -17,6 +17,7 @@ export default function PostCard({ post }){
   const [focused, setFocused] = useState(false)
   const MAX_LEN = 280
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.matchMedia('(max-width: 640px)').matches : false)
+  const [showComment, setShowComment] = useState(false)
 
   useEffect(()=>{
     if (typeof window === 'undefined') return
@@ -30,6 +31,7 @@ export default function PostCard({ post }){
     e.preventDefault()
     addComment(post.id, text.trim())
     setText('')
+    setShowComment(false)
   }
 
   useEffect(()=>{
@@ -175,7 +177,7 @@ export default function PostCard({ post }){
           </span>
           <span className="label">{post.liked ? 'Unlike' : 'Like'}</span>
         </button>
-        <button className="comment" onClick={()=> inputRef.current?.focus()} aria-label="Komentar">
+        <button className="comment" onClick={()=> { setShowComment(true); setTimeout(()=> inputRef.current?.focus(), 0); }} aria-label="Komentar">
           <span className="icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="18" height="18">
               <path fill="currentColor" d="M20 2H4a2 2 0 0 0-2 2v14l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z" />
@@ -204,18 +206,14 @@ export default function PostCard({ post }){
         ))}
       </div>
 
-      {/* Overlay saat expanded di mobile untuk meningkatkan kontras dan fokus */}
-      {isMobile && (focused || text.length > 0) && (
-        <div className="comment-overlay" onClick={()=> inputRef.current?.blur()} aria-hidden="true"></div>
-      )}
 
-      <form className={"comment-form fixed" + (isMobile && (focused || text.length > 0) ? ' expanded' : '')} onSubmit={submit}>
+      <form className="comment-form" style={{ display: showComment ? 'flex' : 'none' }} onSubmit={submit}>
         <textarea
           ref={inputRef}
           value={text}
           onChange={onChange}
-          onFocus={()=>setFocused(true)}
-          onBlur={()=>setFocused(false)}
+          onFocus={()=>{ setFocused(true); setShowComment(true); }}
+          onBlur={()=>{ setFocused(false); if(!text.trim()) setShowComment(false); }}
           placeholder="Tulis komentar..."
           rows={1}
         />
