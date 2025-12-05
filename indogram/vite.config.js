@@ -9,7 +9,7 @@ export default defineConfig({
     strictPort: false,
     proxy: {
       '/api': {
-        target: process.env.VITE_API_BASE || 'http://localhost:8081',
+        target: process.env.VITE_API_BASE || 'http://localhost:8080',
         changeOrigin: true,
         secure: false,
       }
