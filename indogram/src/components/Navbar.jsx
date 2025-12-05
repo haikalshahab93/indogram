@@ -46,7 +46,7 @@ export default function Navbar() {
           <NavLink to="/notifications" className={({isActive}) => `nav-item${isActive ? ' active' : ''}`}>
             <span className="icon" aria-hidden="true" style={{ position: 'relative' }}>
               <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M12 22a2 2 0 002-2H10a2 2 0 002 2zm6-6V11a6 6 0 10-12 0v5l-2 2v1h16v-1l-2-2z"/></svg>
-              {unreadCount > 0 && (<span className="notif-badge" aria-label={`${unreadCount} unread`}></span>)}
+              {unreadCount > 0 && (<span className="notif-badge" aria-label={`${unreadCount} unread`}>{unreadCount}</span>)}
             </span>
             <span className="label">Notifications</span>
           </NavLink>
