@@ -347,7 +347,9 @@ export default function AppProvider({ children }){
 
   // Notifications state & helpers
   const [notifications, setNotifications] = useState([])
+  const [notificationsLoading, setNotificationsLoading] = useState(false)
   const fetchNotifications = useCallback(async ()=>{
+    setNotificationsLoading(true)
     try{
       const me = currentUser?.username || 'Indogrammer'
       const res = await fetch(`${API_BASE}/api/notifications?me=${encodeURIComponent(me)}`, { headers: { ...authHeaders() } })
@@ -355,6 +357,7 @@ export default function AppProvider({ children }){
       if(Array.isArray(data)) setNotifications(data)
       return Array.isArray(data) ? data : []
     }catch{ return [] }
+    finally{ setNotificationsLoading(false) }
   }, [API_BASE, token, currentUser])
   const markNotificationRead = async (id)=>{
     try{
@@ -501,6 +504,7 @@ export default function AppProvider({ children }){
     respondInvite,
     // Notifications
     notifications,
+    notificationsLoading,
     fetchNotifications,
     markNotificationRead,
     // new: setAvatar helper
